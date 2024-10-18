@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Search and Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .search-form {
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    select,
+    input[type="text"] {
+      padding: 5px;
+      margin-right: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .btn {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    .status-upcoming {
+      color: green;
+    }
+
+    .status-pending {
+      color: orange;
+    }
+
+    .status-hold {
+      color: red;
+    }
+
+    .status-complete {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Search Projects</h2>
+
+  <!-- Search Form -->
+  <form class="search-form">
+    <!-- Project Name Search -->
+    <label for="project-name">Project Name:</label>
+    <input type="text" id="project-name" name="project-name" placeholder="Enter project name...">
+
+    <!-- Status Filter -->
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+      <option value="all">All</option>
+      <option value="upcoming">Upcoming</option>
+      <option value="pending">Pending</option>
+      <option value="hold">On Hold</option>
+      <option value="complete">Completed</option>
+    </select>
+
+    <!-- Search Button -->
+    <button type="button" class="btn" onclick="filterProjects()">Search</button>
+  </form>
+
+  <!-- Table to Display Filtered Projects -->
+  <table id="project-table">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Client</th>
+        <th>Deadline</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Sample Data (This will be replaced dynamically in JS) -->
+      <tr>
+        <td>E-commerce Website</td>
+        <td>XYZ Corp</td>
+        <td>15th December 2024</td>
+        <td class="status-upcoming">Upcoming</td>
+      </tr>
+      <tr>
+        <td>Mobile App Development</td>
+        <td>ABC Inc.</td>
+        <td>30th November 2024</td>
+        <td class="status-pending">Pending</td>
+      </tr>
+      <tr>
+        <td>Company Website Redesign</td>
+        <td>123 Corp.</td>
+        <td>20th December 2024</td>
+        <td class="status-hold">On Hold</td>
+      </tr>
+      <tr>
+        <td>Inventory Management System</td>
+        <td>LMN Industries</td>
+        <td>10th October 2024</td>
+        <td class="status-complete">Completed</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- JavaScript to Filter Projects Based on Search/Status -->
+  <script>
+    function filterProjects() {
+      const nameInput = document.getElementById("project-name").value.toLowerCase();
+      const statusInput = document.getElementById("status").value;
+      const table = document.getElementById("project-table").getElementsByTagName("tbody")[0];
+      const rows = table.getElementsByTagName("tr");
+
+      for (let i = 0; i < rows.length; i++) {
+        const projectName = rows[i].getElementsByTagName("td")[0].textContent.toLowerCase();
+        const projectStatus = rows[i].getElementsByTagName("td")[3].textContent.toLowerCase();
+
+        let nameMatch = projectName.includes(nameInput);
+        let statusMatch = (statusInput === "all" || projectStatus === statusInput);
+
+        // Show row if both name and status match
+        if (nameMatch && statusMatch) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+
+</html>

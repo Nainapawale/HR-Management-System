@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance</title>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .attendance-table, .attendance-graph {
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Employee Attendance</h2>
+
+    <!-- View Attendance Table -->
+    <div class="attendance-table">
+        <h3>View Attendance</h3>
+        <label for="attendance-date">Choose a date or month:</label>
+        <input type="month" id="attendance-date" value="2024-10">
+        <button class="btn" onclick="viewAttendance()">View Attendance</button>
+
+        <table id="attendance-table">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Attendance records will be populated here -->
+                <tr>
+                    <td>101</td>
+                    <td>Alice</td>
+                    <td>Present</td>
+                    <td>2024-10-01</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Bob</td>
+                    <td>Absent</td>
+                    <td>2024-10-01</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Graphical Representation of Attendance -->
+    <div class="attendance-graph">
+        <h3>Attendance Graph (Monthly)</h3>
+        <canvas id="attendanceChart"></canvas>
+    </div>
+
+    <script>
+        // Function to simulate viewing attendance
+        function viewAttendance() {
+            const dateValue = document.getElementById('attendance-date').value;
+            alert("Displaying attendance for: " + dateValue);
+            // You can fetch data dynamically based on the date or month selected
+        }
+
+        // Chart.js - Attendance Graph
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        const attendanceChart = new Chart(ctx, {
+            type: 'bar', // You can also use 'line' for line charts
+            data: {
+                labels: ['Alice', 'Bob', 'John', 'Emily', 'Steve'], // Employee names
+                datasets: [{
+                    label: 'Days Present in October 2024',
+                    data: [22, 18, 21, 20, 23], // Number of days present
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Days Present'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

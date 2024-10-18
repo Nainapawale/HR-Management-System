@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Employee Performance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Search Employee Performance</h2>
+
+  <!-- Form to Search Employee -->
+  <form action="SearchEmployeeServlet" method="GET">
+    <label for="employeeId">Enter Employee ID or Name:</label>
+    <input type="text" id="employeeId" name="employeeId" placeholder="e.g. 101 or John" required>
+    <input type="submit" value="Search">
+  </form>
+
+  <!-- Table to Display Search Results -->
+  <table id="employeePerformanceTable">
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Job Title</th>
+        <th>Performance Score</th>
+        <th>Review Date</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody id="employeePerformanceData">
+      <!-- Employee performance data will be populated here -->
+    </tbody>
+  </table>
+
+</body>
+
+</html>

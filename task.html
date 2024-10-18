@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technologies Used - Bar Graph</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .chart-container {
+      width: 70%;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Technologies Used Overall - Bar Graph</h2>
+
+  <div class="chart-container">
+    <!-- Canvas for the bar chart -->
+    <canvas id="technologyBarGraph"></canvas>
+  </div>
+
+  <script>
+    // JavaScript for rendering the bar graph
+
+    // Get the context of the canvas where we want to render the chart
+    const ctx = document.getElementById('technologyBarGraph').getContext('2d');
+
+    // Data for the technologies used
+    const technologyData = {
+      labels: ['JavaScript', 'Python', 'Java', 'PHP', 'React', 'Node.js', 'Angular', 'Ruby'],
+      datasets: [{
+        label: 'Number of Projects Using Technology',
+        data: [15, 10, 8, 6, 12, 9, 5, 3], // Sample data for the technologies
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.6)', // JS
+          'rgba(54, 162, 235, 0.6)', // Python
+          'rgba(255, 206, 86, 0.6)', // Java
+          'rgba(255, 99, 132, 0.6)', // PHP
+          'rgba(153, 102, 255, 0.6)', // React
+          'rgba(255, 159, 64, 0.6)', // Node.js
+          'rgba(255, 205, 86, 0.6)', // Angular
+          'rgba(201, 203, 207, 0.6)'  // Ruby
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 205, 86, 1)',
+          'rgba(201, 203, 207, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // Configuration options for the chart
+    const config = {
+      type: 'bar',
+      data: technologyData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true // Ensures the y-axis starts from 0
+          }
+        }
+      }
+    };
+
+    // Create the bar chart
+    const technologyBarChart = new Chart(ctx, config);
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notice Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      height: 150px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 style="text-align: center;">Post a Notice</h2>
+
+  <form action="/submit-notice" method="post">
+    <label for="notice-title">Notice Title:</label>
+    <input type="text" id="notice-title" name="notice-title" placeholder="Enter the title of the notice" required>
+
+    <label for="notice-content">Notice Content:</label>
+    <textarea id="notice-content" name="notice-content" placeholder="Write the notice here..." required></textarea>
+
+    <button type="submit">Submit Notice</button>
+  </form>
+
+</body>
+
+</html>

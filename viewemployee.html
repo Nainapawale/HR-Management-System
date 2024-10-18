@@ -1,0 +1,193 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View All Employees</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>All Employees</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Department</th>
+        <th>Job Title</th>
+        <th>Salary</th>
+        <th>Date of Joining</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTable"> -->
+<!-- Employee data will be populated here -->
+<!--</tbody>
+  </table>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .dashboard-summary {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+
+    .summary-item {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 8px;
+      width: 30%;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    thead {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Employee Dashboard</h1>
+
+  <!-- Dashboard Summary -->
+  <div class="dashboard-summary">
+    <div class="summary-item">
+      <h3>Total Employees</h3>
+      <p id="totalEmployees">Loading...</p>
+    </div>
+    <div class="summary-item">
+      <h3>Total Departments</h3>
+      <p id="totalDepartments">Loading...</p>
+    </div>
+  </div>
+
+  <!-- Employee List -->
+  <h2>Employee List</h2>
+  <table id="employeeTable">
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Job Role</th>
+        <th>Email</th>
+        <th>Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be loaded here dynamically -->
+    </tbody>
+  </table>
+
+  <script>
+    // Function to fetch and display dashboard summary and employee data
+    function loadDashboardData() {
+      // Fetch data from Java Servlet API (assuming API endpoint is '/api/employees')
+      fetch('http://localhost:8080/api/employees')
+        .then(response => response.json())
+        .then(data => {
+          // Display total employees and departments
+          document.getElementById('totalEmployees').textContent = data.totalEmployees;
+          document.getElementById('totalDepartments').textContent = data.totalDepartments;
+
+          // Display employee list
+          const employeeTableBody = document.querySelector('#employeeTable tbody');
+          employeeTableBody.innerHTML = ''; // Clear existing data
+
+          data.employees.forEach(employee => {
+            const row = `
+                            <tr>
+                                <td>${employee.id}</td>
+                                <td>${employee.name}</td>
+                                <td>${employee.jobRole}</td>
+                                <td>${employee.email}</td>
+                                <td>${employee.salary}</td>
+                            </tr>
+                        `;
+            employeeTableBody.innerHTML += row;
+          });
+        })
+        .catch(error => console.error('Error fetching employee data:', error));
+    }
+
+    // Load data on page load
+    window.onload = loadDashboardData;
+  </script>
+
+</body>
+
+</html>

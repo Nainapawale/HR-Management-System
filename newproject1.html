@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Project Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 600px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Create New Project</h2>
+
+  <form action="/submit-project" method="post">
+    <!-- Project Name -->
+    <label for="project-name">Project Name:</label>
+    <input type="text" id="project-name" name="project_name" placeholder="Enter project name" required>
+
+    <!-- Project Description -->
+    <label for="project-description">Project Description:</label>
+    <textarea id="project-description" name="project_description" rows="4" placeholder="Enter project description"
+      required></textarea>
+
+    <!-- Select People Based on Skills -->
+    <label for="team-selection">Select Team Members (based on skills):</label>
+    <select id="team-selection" name="team_members[]" multiple required>
+      <option value="1">Alice (Python, JavaScript)</option>
+      <option value="2">Bob (Java, SQL)</option>
+      <option value="3">John (React, Node.js)</option>
+      <option value="4">Emily (UI/UX, HTML, CSS)</option>
+      <option value="5">Steve (DevOps, Docker, Kubernetes)</option>
+      <option value="6">Sarah (Data Science, Python, R)</option>
+    </select>
+
+    <!-- Submit Button -->
+    <button type="submit">Create Project</button>
+  </form>
+
+</body>
+
+</html>
